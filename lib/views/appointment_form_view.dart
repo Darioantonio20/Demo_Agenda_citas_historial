@@ -337,6 +337,7 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
         title: Text(widget.appointment == null ? 'Crear Cita' : 'Editar Cita',
             style: AppStyles.appBarTitle),
         backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
       body: Padding(
@@ -345,16 +346,28 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
           key: _formKey,
           child: ListView(
             children: [
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _patientSearchController,
                 decoration: InputDecoration(
                   labelText: 'Buscar paciente por nombre o teléfono',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                   suffixIcon: _patientSearchController.text.isNotEmpty
                       ? IconButton(
-                          icon: Icon(Icons.clear),
+                          icon: Icon(Icons.clear, color: Colors.white),
                           onPressed: () {
                             _patientSearchController.clear();
                             setState(() {
@@ -421,7 +434,16 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
                 controller: _patientNameController,
                 decoration: InputDecoration(
                   labelText: 'Nombre Completo del Paciente',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -438,7 +460,16 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
                 controller: _phoneNumberController,
                 decoration: InputDecoration(
                   labelText: 'Número de Teléfono del Paciente',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -456,7 +487,16 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
                 value: _selectedPaymentType,
                 decoration: InputDecoration(
                   labelText: 'Tipo de Pago',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -500,7 +540,16 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
                 controller: _addressController,
                 decoration: InputDecoration(
                   labelText: 'Domicilio',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -550,7 +599,16 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
                 value: _selectedStatus,
                 decoration: InputDecoration(
                   labelText: 'Estado de la Cita',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),

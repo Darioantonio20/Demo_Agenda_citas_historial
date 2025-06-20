@@ -109,6 +109,7 @@ class _PatientFormViewState extends State<PatientFormView> {
             widget.patient == null ? 'Registrar Paciente' : 'Editar Paciente',
             style: AppStyles.appBarTitle),
         backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
       body: Padding(
@@ -121,7 +122,16 @@ class _PatientFormViewState extends State<PatientFormView> {
                 controller: _fullNameController,
                 decoration: InputDecoration(
                   labelText: 'Nombre Completo',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -137,7 +147,16 @@ class _PatientFormViewState extends State<PatientFormView> {
                 controller: _phoneNumberController,
                 decoration: InputDecoration(
                   labelText: 'Número de Teléfono',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -154,7 +173,16 @@ class _PatientFormViewState extends State<PatientFormView> {
                 value: _selectedPaymentType,
                 decoration: InputDecoration(
                   labelText: 'Tipo de Pago',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),
@@ -194,7 +222,16 @@ class _PatientFormViewState extends State<PatientFormView> {
                 controller: _addressController,
                 decoration: InputDecoration(
                   labelText: 'Domicilio',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: primaryColor, width: 2),
+                  ),
+                  labelStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: lightBackgroundColor,
                 ),

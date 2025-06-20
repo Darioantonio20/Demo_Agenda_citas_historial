@@ -24,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
   bool _use24HourFormat = true;
   sfcalendar.CalendarController _calendarController =
       sfcalendar.CalendarController();
+  TextEditingController _patientSearchController = TextEditingController();
 
   @override
   void initState() {
@@ -105,6 +106,7 @@ Domicilio: ${patient.address}''',
       appBar: AppBar(
         title: Text('Agenda Demo', style: AppStyles.appBarTitle),
         backgroundColor: primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
         actions: [
           IconButton(
@@ -126,15 +128,34 @@ Domicilio: ${patient.address}''',
             view: _calendarController.view ?? sfcalendar.CalendarView.month,
             initialDisplayDate: DateTime.now(),
             dataSource: _getCalendarDataSource(appointments),
-            monthViewSettings: const sfcalendar.MonthViewSettings(
+            todayHighlightColor: primaryColor,
+            cellBorderColor: primaryColor,
+            monthViewSettings: sfcalendar.MonthViewSettings(
               appointmentDisplayMode:
                   sfcalendar.MonthAppointmentDisplayMode.appointment,
               showAgenda: true,
+              monthCellStyle: sfcalendar.MonthCellStyle(
+                todayBackgroundColor: primaryColor,
+                todayTextStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
             timeSlotViewSettings: sfcalendar.TimeSlotViewSettings(
               startHour: 0,
               endHour: 24,
               timeFormat: _use24HourFormat ? 'HH:mm' : 'hh:mm a',
+            ),
+            selectionDecoration: BoxDecoration(
+              color: primaryColor.withOpacity(0.3),
+              border: Border.all(color: primaryColor, width: 2),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            viewHeaderStyle: sfcalendar.ViewHeaderStyle(
+              backgroundColor: primaryColor.withOpacity(0.1),
+              dateTextStyle: const TextStyle(color: primaryColor),
+              dayTextStyle: const TextStyle(color: primaryColor),
             ),
             onTap: (sfcalendar.CalendarTapDetails details) async {
               if (details.targetElement ==
@@ -201,8 +222,9 @@ Domicilio: ${patient.address}''',
                                                   },
                                                   backgroundColor: Colors.blue,
                                                   foregroundColor: Colors.white,
-                                                  icon: Icons.edit,
-                                                  label: 'Editar',
+                                                  label: 'EDITAR',
+                                                  padding:
+                                                      const EdgeInsets.all(8),
                                                 ),
                                                 SlidableAction(
                                                   onPressed:
@@ -233,8 +255,9 @@ Domicilio: ${patient.address}''',
                                                   },
                                                   backgroundColor: Colors.red,
                                                   foregroundColor: Colors.white,
-                                                  icon: Icons.delete,
-                                                  label: 'Eliminar',
+                                                  label: 'ELIMINAR',
+                                                  padding:
+                                                      const EdgeInsets.all(8),
                                                 ),
                                               ],
                                             ),
