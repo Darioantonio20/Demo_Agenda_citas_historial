@@ -286,41 +286,34 @@ class _AppointmentFormViewState extends State<AppointmentFormView> {
         status: _selectedStatus!,
       );
 
-      try {
-        if (widget.appointment == null) {
-          await appointmentProvider.addAppointment(appointment);
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.success,
-            animType: AnimType.rightSlide,
-            title: 'Éxito',
-            desc: 'Cita creada correctamente.',
-            btnOkOnPress: () {
-              Navigator.pop(context);
-            },
-            btnOkColor: primaryColor,
-          ).show();
-        } else {
-          await appointmentProvider.updateAppointment(appointment);
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.success,
-            animType: AnimType.rightSlide,
-            title: 'Éxito',
-            desc: 'Cita actualizada correctamente.',
-            btnOkOnPress: () {
-              Navigator.pop(context);
-            },
-            btnOkColor: primaryColor,
-          ).show();
-        }
-      } catch (e) {
+      Map<String, dynamic> result;
+      if (widget.appointment == null) {
+        result = await appointmentProvider.addAppointment(appointment);
+      } else {
+        result = await appointmentProvider.updateAppointment(appointment);
+      }
+
+      if (!mounted) return;
+
+      if (result['success']) {
+        AwesomeDialog(
+          context: context,
+          dialogType: DialogType.success,
+          animType: AnimType.rightSlide,
+          title: 'Éxito',
+          desc: result['message'],
+          btnOkOnPress: () {
+            Navigator.of(context).pop();
+          },
+          btnOkColor: Colors.green,
+        ).show();
+      } else {
         AwesomeDialog(
           context: context,
           dialogType: DialogType.error,
           animType: AnimType.rightSlide,
-          title: 'Error al Guardar Cita',
-          desc: e.toString(),
+          title: 'Error',
+          desc: result['message'],
           btnOkOnPress: () {},
           btnOkColor: Colors.red,
         ).show();

@@ -17,37 +17,35 @@ class AppointmentProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addAppointment(Appointment appointment) async {
-    print('AppointmentProvider: Adding appointment: ${appointment.toMap()}');
-    final newId = await _appointmentService.insertAppointment(appointment);
-    _appointments.add(appointment.copyWith(id: newId));
-    print(
-        'AppointmentProvider: Appointment added with ID: $newId. Current appointments: ${_appointments.length}');
-    notifyListeners();
+  Future<Map<String, dynamic>> addAppointment(Appointment appointment) async {
+    final result = await _appointmentService.insertAppointment(appointment);
+
+    if (result['success']) {
+      _appointments.add(appointment.copyWith(id: result['id']));
+      notifyListeners();
+    }
+
+    return result;
   }
 
-  Future<void> updateAppointment(Appointment appointment) async {
-    print(
-        'AppointmentProvider: Updating appointment with ID: ${appointment.id}, Status: ${appointment.status}');
-    await _appointmentService.updateAppointment(appointment);
-    final index = _appointments.indexWhere((app) => app.id == appointment.id);
-    if (index != -1) {
-      _appointments[index] = appointment; // Update the item in the list
-      print(
-          'AppointmentProvider: Appointment updated. Current status: ${appointment.status}');
-      notifyListeners();
-    } else {
-      print(
-          'AppointmentProvider: Appointment with ID ${appointment.id} not found for update.');
+  Future<Map<String, dynamic>> updateAppointment(
+      Appointment appointment) async {
+    final result = await _appointmentService.updateAppointment(appointment);
+
+    if (result['success']) {
+      final index = _appointments.indexWhere((app) => app.id == appointment.id);
+      if (index != -1) {
+        _appointments[index] = appointment;
+        notifyListeners();
+      }
     }
+
+    return result;
   }
 
   Future<void> deleteAppointment(int id) async {
-    print('AppointmentProvider: Deleting appointment with ID: $id');
     await _appointmentService.deleteAppointment(id);
     _appointments.removeWhere((app) => app.id == id);
-    print(
-        'AppointmentProvider: Appointment deleted. Remaining appointments: ${_appointments.length}');
     notifyListeners();
   }
 
